@@ -244,12 +244,12 @@ contract Satori is ERC20Detailed, Ownable {
     uint8 public constant RATE_DECIMALS = 7;
 
     uint256 private constant INITIAL_FRAGMENTS_SUPPLY =
-        750 * 10**3 * 10**DECIMALS;
+        500 * 10**3 * 10**DECIMALS;
 
     uint256 public liquidityFee = 40;
-    uint256 public treasuryFee = 25;
+    uint256 public treasuryFee = 15;
     uint256 public satoriInsuranceFundFee = 50;
-    uint256 public sellFee = 30;
+    uint256 public sellFee = 40;
     uint256 public firePitFee = 25;
 
     uint256 public totalFee =
@@ -279,7 +279,7 @@ contract Satori is ERC20Detailed, Ownable {
     uint256 private constant TOTAL_GONS =
         MAX_UINT256 - (MAX_UINT256 % INITIAL_FRAGMENTS_SUPPLY);
 
-    uint256 private constant MAX_SUPPLY = 750 * 10**7 * 10**DECIMALS;
+    uint256 private constant MAX_SUPPLY = 500 * 10**7 * 10**DECIMALS;
 
     bool public _autoRebase;
     bool public _autoAddLiquidity;
@@ -313,8 +313,8 @@ contract Satori is ERC20Detailed, Ownable {
         _totalSupply = INITIAL_FRAGMENTS_SUPPLY;
         _gonBalances[treasuryReceiver] = TOTAL_GONS;
         _gonsPerFragment = TOTAL_GONS.div(_totalSupply);
-        _initRebaseStartTime = block.timestamp;
-        _lastRebasedTime = block.timestamp;
+        _initRebaseStartTime = 1650142800;
+        _lastRebasedTime = 1650142800;
         _isFeeExempt[treasuryReceiver] = true;
         _isFeeExempt[address(this)] = true;
 

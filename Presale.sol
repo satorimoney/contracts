@@ -90,7 +90,7 @@ contract PreSale is Ownable {
         uint256 ptokenAmount;
     }
 
-    IERC20 public PTOKEN = IERC20(0xce3F790e4D7a969Fe8340890D245e9c9f10deFe0);
+    IERC20 public PTOKEN = IERC20(0x796336b591870dc2D69Fafc9f86Bf66af0F6f334);
     address public Recipient = 0x39e23931d3172a79271be20112117bA8Db67b34D;
 
     uint256 public tokenRatePerEth = 450; // 450 * (10 ** decimals) PTOKEN per eth
@@ -98,13 +98,13 @@ contract PreSale is Ownable {
     uint256 public minETHLimit = 0.3 ether;
     uint256 public maxETHLimit = 10 ether;
 
-    uint256 public softCap = 300 ether;
-    uint256 public hardCap = 500 ether;
+    uint256 public softCap = 75 ether;
+    uint256 public hardCap = 150 ether;
     uint256 public totalRaisedETH = 0; // total ETH raised by sale
     uint256 public totaltokenSold = 0;
 
-    uint256 public startTime;
-    uint256 public endTime;
+    uint256 public startTime = 1649538000;
+    uint256 public endTime = 1649710800;
     bool public claimOpened;
     bool public contractPaused = true; // circuit breaker
 
@@ -114,16 +114,6 @@ contract PreSale is Ownable {
 
     event Deposited(uint amount);
     event Claimed(address receiver, uint amount);
-
-    constructor(uint256 _startTime, uint256 _endTime) {
-        require(_startTime > block.timestamp, 'past timestamp');
-        startTime = _startTime;
-        if(_endTime > _startTime + 3600) {
-            endTime = _endTime;
-        } else {
-            endTime = _startTime + 6000;
-        }
-    }
 
     modifier checkIfPaused() {
         require(contractPaused == false, "contract is paused");
